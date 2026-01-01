@@ -1,0 +1,16 @@
+void setup(){
+  Serial.begin(9600);
+  Serial.println("Simple calculation using a function:");
+  int first_number=5;
+  int second_number=6;
+  Serial.println(do_a_calc(first_number,second_number));
+}
+
+void loop(){
+ 
+}
+
+int do_a_calc(int num_1,int num_2){
+	int result = num_1+num_2;
+  	return result;
+}

@@ -1,0 +1,17 @@
+int ButtonState=0;
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(2,INPUT);
+}
+
+void loop(){
+  ButtonState=digitalRead(2);
+  if(ButtonState==HIGH){
+    Serial.println("Button is pressed");
+  }
+  else{
+  	Serial.println("Button is not pressed");
+  }
+  delay(500);
+}

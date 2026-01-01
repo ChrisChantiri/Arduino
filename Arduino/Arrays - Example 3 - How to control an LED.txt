@@ -1,0 +1,13 @@
+int led_state[9]={1,0,1,0,1,0,0,1,0};
+int led_duration[9]={1000,250,1000,250,1000,250,250,500,250};
+
+void setup(){
+  pinMode(7,OUTPUT);
+}
+
+void loop(){
+  for(int i=0;i<9;i++){
+    digitalWrite(7,led_state[i]);
+    delay(led_duration[i]);
+  }
+}

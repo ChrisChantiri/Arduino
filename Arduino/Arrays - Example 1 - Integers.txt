@@ -1,0 +1,44 @@
+int array[5]={1,2,3,4,5};
+
+void setup(){
+  Serial.begin(9600);
+  
+  Serial.println("Your array numbers:");
+  for(int i=0;i<=4;i++){
+    Serial.print("Index ");
+    Serial.print(i);
+    Serial.print(" contains value ");
+    Serial.println(array[i]);
+  }
+  
+  Serial.println("");
+  Serial.println("Let's do some calculations:");
+  
+  for(int i=0;i<4;i++){
+    Serial.print(array[i]);
+    Serial.print("+");
+    Serial.print(array[i+1]);
+    Serial.print("=");
+    Serial.println(array[i]+array[i+1]);
+  }
+  
+  Serial.println("");
+  Serial.println("Let's do some calculations, and store the results:");
+  
+  for(int i=0;i<4;i++){
+    Serial.print(array[i]);
+    Serial.print("+");
+    Serial.print(array[i+1]);
+    Serial.print("=");
+    Serial.print(array[i]+array[i+1]);
+    int sum=array[i]+array[i+1];
+    array[i]=sum;
+    Serial.print("->Index ");
+    Serial.print(i);
+    Serial.print(" contains value ");
+    Serial.println(sum);
+  } 
+}
+
+void loop(){  
+}
