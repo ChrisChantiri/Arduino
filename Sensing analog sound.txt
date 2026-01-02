@@ -1,0 +1,48 @@
+int currentValue;
+int maxValue;
+int minValue;
+unsigned long timer;
+int sampleSpan  = 200; 
+int volume;            
+int ledpin      = 7;
+
+void setup(){
+    Serial.begin(9600); 
+    pinMode (ledpin, OUTPUT);
+    resetValues();
+}
+
+void loop(){
+    currentValue = analogRead(A0);
+
+    if (currentValue < minValue) {
+        minValue = currentValue;
+    } 
+    if (currentValue > maxValue) {
+        maxValue = currentValue;
+    }
+
+    if (millis() - timer >= sampleSpan) {
+        volume = maxValue - minValue;
+        //Serial.println(volume);
+        resetValues();
+    }
+
+    if (volume > 400)
+    {
+      Serial.println("Loud");
+      digitalWrite(ledpin,HIGH);
+    } else
+    {
+      Serial.println("Quiet");
+      digitalWrite(7,LOW);
+    }
+     
+}
+
+void resetValues()
+{
+    maxValue = 0;
+    minValue = 1024;
+    timer = millis(); 
+}

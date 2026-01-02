@@ -1,0 +1,34 @@
+int soundDetectedPin = 10;          
+int soundDetectedVal = HIGH;        
+boolean bAlarm       = false;
+unsigned long lastSoundDetectTime; 
+int soundAlarmTime   = 500;        
+int ledpin           = 7;
+
+void setup ()
+{
+  Serial.begin(9600);  
+  pinMode (soundDetectedPin, INPUT) ; 
+  pinMode (ledpin, OUTPUT);               
+                                      
+}
+void loop ()
+{
+  soundDetectedVal = digitalRead (soundDetectedPin) ; 
+  if (soundDetectedVal == HIGH) 
+  {
+    digitalWrite(ledpin,HIGH); 
+    lastSoundDetectTime = millis(); 
+    if (!bAlarm){
+      Serial.println("LOUD!");
+      bAlarm = true;
+    }
+  }
+
+  if( (millis()-lastSoundDetectTime) > soundAlarmTime  &&  bAlarm){
+    Serial.println("quiet");
+    digitalWrite(ledpin,LOW);
+    bAlarm = false;
+  }
+
+}
